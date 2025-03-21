@@ -17,10 +17,10 @@ public class DBTest_Demo {
         int flag = 0;
 
         try {
-            // Load MySQL Driver
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Setup the connection with MySQL EC2 instance (No SSL)
+            
             connect = DriverManager.getConnection(
                 "jdbc:mysql://" + connection_host + ":3306/" + db_name + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC", 
                 db_user, 
