@@ -23,13 +23,13 @@ import javax.servlet.http.Part;
 public class FileUploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    // Fixed upload path for EC2
+   
     private static final String UPLOAD_DIR = "/var/lib/tomcat9/webapps/uploads"; 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Ensure upload directory exists
+        
         File fileSaveDir = new File(UPLOAD_DIR);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdirs();
@@ -42,7 +42,7 @@ public class FileUploadServlet extends HttpServlet {
             part.write(UPLOAD_DIR + File.separator + fileName);
         }
 
-        // ✅ UPDATED: New EC2 Elastic IP
+        // EC2 Elastic IP
         String dbURL = "jdbc:mysql://3.141.101.113:3306/db_repo"
         + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
@@ -60,11 +60,11 @@ public class FileUploadServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Return a response to the user
+        // Return response
         response.getWriter().write("File uploaded successfully: " + fileName);
     }
 
-    // Helper method to parse file name from HTTP header
+    
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         for (String token : contentDisp.split(";")) {
